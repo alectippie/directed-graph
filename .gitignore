@@ -1,0 +1,18 @@
+# Compiled binary
+graph_test
+*.out
+*.o
+
+# Graphviz output
+*.png
+*.dot
+
+# Build scripts
+build.sh
+
+# VS Code settings (optional)
+.vscode/
+
+# OS/Editor junk
+.DS_Store
+Thumbs.db
