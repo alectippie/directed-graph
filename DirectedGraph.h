@@ -38,5 +38,9 @@ class DirectedGraph {
     void exportToDOT(const std::string& filename) const;
 
     //traversal functions
+
     std::vector<std::string> bfs(const std::string startId) const;
+
+    std::vector<std::string> dfs(const std::string startId) const;
+    
 };

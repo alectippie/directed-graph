@@ -1,5 +1,6 @@
 #include "DirectedGraph.h"
 #include <queue>
+#include <stack>
 #include <unordered_set>
 #include <stdexcept>
 #include <fstream>
@@ -148,3 +149,33 @@ std::vector<std::string> DirectedGraph::bfs(const std::string startId) const {
     return result;
 }
 
+//Deapth first search
+std::vector<std::string> DirectedGraph::dfs(const std::string startId) const {
+    std::vector<std::string> result;
+
+    if (!hasNode(startId)) return result;
+
+    std::unordered_set<std::string> visited;
+    std::stack<std::shared_ptr<Node>> s;
+
+    s.push(nodes.at(startId));
+
+    while(!s.empty()) {
+        auto current = s.top(); s.pop();
+        const std::string& currentId = current->getId();
+        
+        if(visited.find(currentId) == visited.end()){
+                
+            result.push_back(currentId);
+            visited.insert(currentId);
+
+            for(const auto& neighbor : current->getNeighbors()){
+                if (visited.find(neighbor->getId()) == visited.end()) {
+                    s.push(neighbor);
+                }
+            }
+
+        }
+    }
+    return result;
+}
