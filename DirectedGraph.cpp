@@ -168,10 +168,12 @@ std::vector<std::string> DirectedGraph::dfs(const std::string startId) const {
                 
             result.push_back(currentId);
             visited.insert(currentId);
-
-            for(const auto& neighbor : current->getNeighbors()){
-                if (visited.find(neighbor->getId()) == visited.end()) {
-                    s.push(neighbor);
+            
+            //reversing neighbbors for consistent order with recursive dfs
+            const auto& neighbors = current->getNeighbors();
+            for (auto it = neighbors.rbegin(); it != neighbors.rend(); ++it) {
+                if (visited.find((*it)->getId()) == visited.end()) {
+                    s.push(*it);
                 }
             }
 

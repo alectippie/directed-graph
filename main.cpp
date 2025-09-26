@@ -34,6 +34,16 @@ int main() {
     }
     std::cout << std::endl;
 
+    // run dfs starting from A
+    std::cout << "\nDFS starting from node A:\n";
+    std::vector<std::string> dfsResult = graph.dfs("A");
+
+    for (const auto& nodeId : dfsResult) {
+        std::cout << nodeId << " ";
+    }
+    std::cout << std::endl;
+
+
     // Export graph to DOT file
     try {
         graph.exportToDOT("graph.dot");
